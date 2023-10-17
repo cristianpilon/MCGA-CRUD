@@ -3,7 +3,7 @@ const { productsService } = require('../services/productsService');
 const productsController = (router) => {
     const service = productsService();
 
-    router.get('/getProduct/:id', (req, res) => {
+    router.get('/products/:id', (req, res) => {
         const product = service.get(req.params.id);
 
         if (product) {
@@ -13,12 +13,12 @@ const productsController = (router) => {
         return res.status(404).json({ message: 'Producto no encontrado' });
     });
 
-    router.get('/getProducts', (req, res) => {
+    router.get('/products', (req, res) => {
         const products = service.getAll();
         res.json(products);
     });
     
-    router.post('/addProduct', (req, res) => {
+    router.post('/products', (req, res) => {
         const { name } = req.body;
     
         if (name) {
@@ -29,7 +29,7 @@ const productsController = (router) => {
         return res.status(400).json({ message: 'Debe proporcionar nombre del producto' });
     });
 
-    router.delete('/deleteProduct/:id', (req, res) => {
+    router.delete('/products/:id', (req, res) => {
         const id = service.delete(req.params.id);
 
         if (id) {

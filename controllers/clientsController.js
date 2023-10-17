@@ -3,7 +3,7 @@ const { clientsService } = require('../services/clientsService');
 const clientsController = (router) => {
     const service = clientsService();
 
-    router.get('/getClient/:id', (req, res) => {
+    router.get('/clients/:id', (req, res) => {
         const client = service.get(req.params.id);
 
         if (client) {
@@ -13,12 +13,12 @@ const clientsController = (router) => {
         return res.status(404).json({ message: 'Cliente no encontrado' });
     });
 
-    router.get('/getClients', (req, res) => {
+    router.get('/clients', (req, res) => {
         const clients = service.getAll();
         res.json(clients);
     });
 
-    router.post('/addClient', createClient = (req, res) => {
+    router.post('/clients', createClient = (req, res) => {
         const { name, lastName, mail } = req.body;
     
         if (name && lastName && mail) {
@@ -29,7 +29,7 @@ const clientsController = (router) => {
         return res.status(400).json({ message: 'Debe proporcionar nombre, apellido y mail del cliente' });
     });
 
-    router.delete('/deleteClient/:id', (req, res) => {
+    router.delete('/clients/:id', (req, res) => {
         const id = service.delete(req.params.id);
 
         if (id) {

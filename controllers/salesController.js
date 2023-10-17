@@ -3,7 +3,7 @@ const { salesService } = require('../services/salesService');
 const salesController = (router) => { 
     const service = salesService();
 
-    router.get('/getSales', (req, res) => {
+    router.get('/sales', (req, res) => {
         const sales = service.getAll();
         res.json(sales);
     });
